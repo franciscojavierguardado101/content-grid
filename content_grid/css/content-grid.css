@@ -1,0 +1,287 @@
+/* =========================================================
+   GRID CONTAINER
+   ========================================================= */
+   .content-grid__items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+  }
+  
+  /* =========================================================
+     EACH ITEM
+     ========================================================= */
+  .content-grid__item {
+    text-align: center;
+  }
+  
+  /* =========================================================
+     IMAGE WRAPPER — FIXED VISUAL BOX
+     ========================================================= */
+  .content-grid__image {
+    width: 100%;
+    aspect-ratio: 3 / 3;
+  /*  overflow: hidden; */
+    border-radius: 0px;
+  /* background-color: #e0e0e0; */
+    display: block;
+  }
+  
+  /* =========================================================
+     IMAGE — FILL BOX WITHOUT RESPONSIVE ZOOM
+     ========================================================= */
+  .content-grid__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  
+    /* 🚫 CRITICAL: prevent zooming on resize */
+    max-width: none;
+  }
+  
+  /* =========================================================
+     LINK LABEL BELOW IMAGE (BASE)
+     ========================================================= */
+  .content-grid__link a {
+    font-family: 'PT Serif', Georgia, serif;
+    font-size: 1rem;
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.25rem;
+  }
+  
+  /* =========================================================
+     REMOVE EXTRA DESCRIPTION TEXT (OVERRIDDEN LATER)
+     ========================================================= */
+  .content-grid__description {
+    display: none;
+  }
+  
+  /* =========================================================
+     RESPONSIVE GRID — TABLET
+     ========================================================= */
+  @media (max-width: 1024px) {
+    .content-grid__items {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* =========================================================
+     RESPONSIVE GRID — MOBILE (TEMP 1 COL, OVERRIDDEN BELOW)
+     ========================================================= */
+  @media (max-width: 767px) {
+    .content-grid__items {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* =========================================================
+     CENTER CONTENT GRID TITLE
+     ========================================================= */
+  .content-grid__title {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.25rem;
+    max-width: 70ch;
+  }
+  
+  /* =========================================================
+     CONTENT GRID DESCRIPTION (TOP)
+     ========================================================= */
+  .content-grid > .content-grid__description {
+    max-width: 70ch;
+    margin: 0 auto 2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #000;
+    text-align: center;
+  }
+  
+  /* =========================================================
+     ITEM GRID DESCRIPTION (PER ITEM)
+     ========================================================= */
+  .content-grid__item .content-grid__description {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #555;
+  }
+  
+  /* =========================================================
+     FORCE DESCRIPTIONS TO SHOW (RUTGERS OVERRIDE)
+     ========================================================= */
+  .content-grid__description {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+  
+  /* Top-level Content Grid description (override refinement) */
+  .content-grid > .content-grid__description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 2rem;
+    max-width: 100ch;
+  }
+  
+  /* =========================================================
+     OPTIONAL HORIZONTAL PADDING (DISABLED)
+     ========================================================= */
+  /*
+  .content-grid__items {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  */
+  
+  /* =========================================================
+     RESPONSIVE GRID — MOBILE (FINAL OVERRIDE → 2 COLUMNS)
+     ========================================================= */
+  @media (max-width: 767px) {
+    .content-grid__items {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* =========================================================
+     FORCE DESCRIPTION TEXT TO BLACK
+     ========================================================= */
+  .content-grid__description {
+    color: #000;
+  }
+  
+  .content-grid__item .content-grid__description {
+    color: #000;
+  }
+  
+  /* =========================================================
+     CONTENT GRID BASE
+     ========================================================= */
+  .content-grid {
+    background-color: var(--content-grid-bg, transparent);
+    padding: 3rem 2rem;
+  }
+  
+  /* =========================================================
+     CONTENT GRID COLOR MODIFIERS
+     ========================================================= */
+  .content-grid--content_grid_yellow { --content-grid-bg: #FFD15D; }
+  .content-grid--content_grid_teal   { --content-grid-bg: #4BB2AF; }
+  .content-grid--content_grid_red    { --content-grid-bg: #C03; }
+  .content-grid--content_grid_maroon { --content-grid-bg: #480000; }
+  .content-grid--content_grid_orange { --content-grid-bg: #E77500; }
+  .content-grid--content_grid_blue   { --content-grid-bg: #035096; }
+  .content-grid--content_grid_olive  { --content-grid-bg: #50665F; }
+  .content-grid--content_grid_black  { --content-grid-bg: #000000; }
+  
+  /* =========================================================
+     DARK BACKGROUND → WHITE TEXT
+     ========================================================= */
+  .content-grid--content_grid_red,
+  .content-grid--content_grid_maroon,
+  .content-grid--content_grid_blue,
+  .content-grid--content_grid_olive,
+  .content-grid--content_grid_black,
+  .content-grid--content_grid_orange {
+    color: #fff;
+  }
+  
+  /* Titles */
+  .content-grid--content_grid_red .content-grid__title,
+  .content-grid--content_grid_maroon .content-grid__title,
+  .content-grid--content_grid_blue .content-grid__title,
+  .content-grid--content_grid_olive .content-grid__title,
+  .content-grid--content_grid_black .content-grid__title,
+  .content-grid--content_grid_orange .content-grid__title {
+    color: #fff;
+  }
+  
+  /* Content Grid description */
+  .content-grid--content_grid_red .content-grid__description,
+  .content-grid--content_grid_maroon .content-grid__description,
+  .content-grid--content_grid_blue .content-grid__description,
+  .content-grid--content_grid_olive .content-grid__description,
+  .content-grid--content_grid_black .content-grid__description,
+  .content-grid--content_grid_orange .content-grid__description {
+    color: #fff;
+  }
+  
+  /* Item links */
+  .content-grid--content_grid_red .content-grid__link a,
+  .content-grid--content_grid_maroon .content-grid__link a,
+  .content-grid--content_grid_blue .content-grid__link a,
+  .content-grid--content_grid_olive .content-grid__link a,
+  .content-grid--content_grid_black .content-grid__link a,
+  .content-grid--content_grid_orange .content-grid__link a {
+    color: #fff;
+  }
+  
+  /* Item descriptions */
+  .content-grid--content_grid_red .content-grid__item .content-grid__description,
+  .content-grid--content_grid_maroon .content-grid__item .content-grid__description,
+  .content-grid--content_grid_blue .content-grid__item .content-grid__description,
+  .content-grid--content_grid_olive .content-grid__item .content-grid__description,
+  .content-grid--content_grid_black .content-grid__item .content-grid__description,
+  .content-grid--content_grid_orange .content-grid__item .content-grid__description {
+    color: #fff;
+  }
+  
+  /* Hover effects */
+  .content-grid--content_grid_red .content-grid__link a:hover,
+  .content-grid--content_grid_maroon .content-grid__link a:hover,
+  .content-grid--content_grid_blue .content-grid__link a:hover,
+  .content-grid--content_grid_olive .content-grid__link a:hover,
+  .content-grid--content_grid_black .content-grid__link a:hover,
+  .content-grid--content_grid_orange .content-grid__link a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+  }
+  
+  /* =========================================================
+     LINK LABEL BELOW IMAGE (FINAL OVERRIDE)
+     ========================================================= */
+  .content-grid__link a {
+    font-family: 'PT Serif', Georgia, serif;
+    font-size: 1rem;
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.25rem;
+    font-weight: bold;
+  }
+  
+  .content-grid__link a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+  }
+
+
+
+
+
+  /* =========================================================
+     LINkS TO PARAGRAPH TYPES NEEDED FOR THIS PROJECT
+     ========================================================= */
+
+
+  /* =========================================================
+     https://ru-rccl-eagleton-cyber-civics.ddev.site:8443/admin/structure/paragraphs_type/content_grid/fields
+
+     https://ru-rccl-eagleton-cyber-civics.ddev.site:8443/admin/structure/paragraphs_type/item_grid/fields
+
+     https://ru-rccl-eagleton-cyber-civics.ddev.site:8443/node/186
+     ========================================================= */
+

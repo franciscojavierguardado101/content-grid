@@ -1,0 +1,42 @@
+<li class="content-grid__item">
+
+  {# ==============================
+     IMAGE WRAPPER
+     ============================== #}
+  {% if item.field_item_grid_image.entity %}
+    <div class="content-grid__image">
+      <a href="{{ item.field_item_grid_link.uri ?? '#' }}" class="image-link">
+        <img 
+          src="{{ file_url(item.field_item_grid_image.entity.field_media_image.entity.uri.value) }}"
+          alt="{{ item.field_item_grid_image.entity.alt ?? '' }}"
+          loading="lazy"
+        >
+      </a>
+    </div>
+  {% endif %}
+
+
+
+
+
+  {# ==============================
+     LINK BELOW IMAGE
+     ============================== #}
+  {% if item.field_item_grid_link.uri %}
+    <div class="content-grid__link">
+      <a href="{{ item.field_item_grid_link.uri }}">
+        {{ item.field_item_grid_link.title }}
+      </a>
+    </div>
+  {% endif %}
+
+  {# ==============================
+     DESCRIPTION BELOW LINK
+     ============================== #}
+  {% if item.field_item_grid_description.value %}
+    <div class="content-grid__description">
+      {{ item.field_item_grid_description.value }}
+    </div>
+  {% endif %}
+
+</li>

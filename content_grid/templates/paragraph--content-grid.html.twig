@@ -1,0 +1,23 @@
+{% set color_class = paragraph.field_content_grid_color.value ? 'content-grid--' ~ paragraph.field_content_grid_color.value : '' %}
+
+<div class="content-grid {{ color_class }}">
+  {% if paragraph.field_content_grid_title.value %}
+    <h2 class="content-grid__title">{{ paragraph.field_content_grid_title.value }}</h2>
+  {% endif %}
+
+  {% if paragraph.field_content_grid_description.value %}
+    <div class="content-grid__description">
+      {{ paragraph.field_content_grid_description.value }}
+    </div>
+  {% endif %}
+
+  {% if items %}
+    <ul class="content-grid__items">
+      {% for item in items %}
+        {% include '@content_grid/paragraph--item-grid.html.twig' with {
+          item: item
+        } %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

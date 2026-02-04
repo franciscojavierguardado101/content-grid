@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function content_grid_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__content_grid' => [
+      'base hook' => 'paragraph',
+      'template' => 'paragraph--content-grid',
+      'path' => $path . '/templates',
+    ],
+    'paragraph__item_grid' => [
+      'base hook' => 'paragraph',
+      'template' => 'paragraph--item-grid',
+      'path' => $path . '/templates',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function content_grid_preprocess_paragraph(array &$variables) {
+  $paragraph = $variables['paragraph'];
+
+  // Attach library only for content_grid and item_grid.
+  if ($paragraph->bundle() === 'content_grid') {
+    $variables['#attached']['library'][] = 'content_grid/content-grid';
+
+    $items = [];
+    if ($paragraph->hasField('field_content_grid_item') && !$paragraph->get('field_content_grid_item')->isEmpty()) {
+      foreach ($paragraph->get('field_content_grid_item')->referencedEntities() as $item) {
+        $items[] = $item;
+      }
+    }
+
+    $variables['items'] = $items; // Pass nested paragraphs to Twig
+
+    // Optional: Pass color class
+    $color = $paragraph->get('field_content_grid_color')->value ?? '';
+    $variables['color_class'] = $color ? 'content-grid__item--' . $color : '';
+  }
+
+  // Attach library for nested item_grid as well
+  if ($paragraph->bundle() === 'item_grid') {
+    $variables['#attached']['library'][] = 'content_grid/content-grid';
+  }
+}
